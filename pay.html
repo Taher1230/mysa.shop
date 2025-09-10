@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Payment | MYSA.IN</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .payment-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .btn-primary {
+            background-color: #EABAC6;
+            border-color: #EABAC6;
+        }
+        .btn-primary:hover {
+            background-color: #d7a5b2;
+            border-color: #d7a5b2;
+        }
+        .upi-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+        .upi-btn:hover {
+            background-color: #218838;
+            color: white;
+        }
+        .qr-code {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .qr-code img {
+            max-width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h2 class="text-center mb-4" style="color: #EABAC6;">Payment Options</h2>
+        
+        <div class="text-center">
+            <h4>Choose your payment method:</h4>
+            <div class="mt-4">
+                <button id="payNowBtn" class="btn btn-primary" style="margin:10px;">Pay Now (UPI App)</button>
+                <button class="btn btn-primary" style="margin:10px;" onclick="showQR()">Show QR Code</button>
+            </div>
+            <div id="qr-code" class="qr-code" style="display: none;">
+                <h5>Scan QR Code to Pay</h5>
+                <img src="images/qrcode.jpg" alt="QR Code for Payment">
+                <p class="mt-2">UPI ID: mysa.by.nafisa@gmail.com</p>
+            </div>
+            <div class="mt-4">
+                <button class="btn btn-primary" onclick="goBack()">Back to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        // UPI Pay Now button
+        document.getElementById('payNowBtn').onclick = function() {
+            // You can set a fixed amount or fetch from cart if needed
+            var upiId = 'mysa.by.nafisa@okicici'; // Use your UPI ID
+            var name = 'MYSA.IN';
+            var amount = '';
+            var txnNote = 'Payment for MYSA.IN order';
+            var upiUrl = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(name)}&am=${encodeURIComponent(amount)}&cu=INR&tn=${encodeURIComponent(txnNote)}`;
+            window.location.href = upiUrl;
+        };
+        function showQR() {
+            const qrCode = document.getElementById('qr-code');
+            qrCode.style.display = qrCode.style.display === 'none' ? 'block' : 'none';
+        }
+        function goBack() {
+            window.location.href = 'cart.html';
+        }
+    </script>
+</body>
+</html>
+

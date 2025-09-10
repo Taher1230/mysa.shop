@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jewelry Collection | MYSA.IN</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+      
+      body {
+      background-color: #f9f9f9; /* Cloud white */
+      color: #333;
+      }
+
+      
+      .navbar {
+      background-color: #EBCED5; /* Soft pink */
+      }
+
+    .navbar-brand,
+    .nav-link {
+      color: white !important;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .navbar-brand:hover,
+    .nav-link:hover {
+      color: #333 !important; /* Darker hover effect */
+    }
+
+    /* Dropdown Menu Styling */
+    .dropdown-menu {
+      background-color: #F9F2F5; /* Soft cream background */
+      border: 1px solid #EBCED5; /* Border matching the navbar */
+      border-radius: 8px;
+      margin-top: 0.5rem;
+    }
+
+    .dropdown-item {
+      color: #333;
+      font-weight: 500;
+      padding: 10px 20px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+      .btn-primary {
+        background-color: #EABAC6;
+        border-color: #EABAC6;
+      }
+
+      .btn-primary:hover {
+        background-color: #d7a5b2;
+        border-color: #d7a5b2;
+      }
+
+     
+
+      .card-title {
+        color: #EABAC6;
+      }
+
+      .card-text {
+        color: #555;
+      }
+
+      header {
+        background-color: #EABAC6;
+        color: white;
+      }
+
+      footer {
+        background-color: #EABAC6;
+        color: white;
+      }
+
+      footer a {
+        color: #f9f9f9;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        color: #d7a5b2;
+      }
+      .quantity-controls {
+              display: flex;
+              align-items: center;
+            }
+          
+            .quantity-controls button {
+              width: 36px;
+              height: 36px;
+              font-size: 18px;
+              padding: 0;
+              text-align: center;
+            }
+          
+            .quantity-controls span {
+              font-size: 18px;
+              min-width: 24px;
+              text-align: center;
+            }
+            #qr-code {
+      display: none; /* Initially hide the QR code */
+      text-align: center;
+      margin-top: 20px;
+    }
+    #qr-code img {
+      max-width: 200px;
+      height: auto;
+    }
+    .card {
+    border: none;
+    background-color: #fff;
+    height: 400px; /* Set a fixed height for all cards */
+}
+
+.card-img-top {
+    width: 100%; /* Makes the image span the full width of the card */
+    height: 200px; /* Set a fixed height for images */
+    object-fit: contain; /* Ensures the entire image is visible without cropping */
+    object-position: center; /* Centers the image content */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column; /* Aligns items vertically */
+    justify-content: space-between; /* Distributes space between items */
+    height: 100%; /* Ensures the body takes full height of the card */
+}
+   
+.upi-btn {
+      background-color: #28a745;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .upi-btn:hover {
+      background-color: #218838;
+    }
+    .qr-code {
+      margin-top: 20px;
+    }
+    #pay-now {
+  background-color: #EABAC6; /* Sets the background color */
+  border: none; /* Removes the border */
+  color: white; /* Sets the text color to white for contrast */
+  padding: 10px 20px; /* Adds padding for a better look */
+  font-size: 16px; /* Adjusts the font size */
+  border-radius: 5px; /* Adds rounded corners */
+  cursor: pointer; /* Changes cursor to pointer on hover */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+#pay-now:hover {
+  background-color: #d89aaa; /* Slightly darkens the button on hover */
+}
+.summary-btn {
+      background-color: #EABAC6;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      margin: 20px 0;
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+    .summary-btn:hover {
+      background-color: #D99CB2;
+    }
+    .dropdown-item:hover {
+      background-color: #EBCED5; /* Highlight matches navbar color */
+      color: white;
+    }
+
+    /* Adjusting Button on Small Screens */
+    .navbar-toggler-icon {
+      filter: invert(1); /* Makes the toggler icon white */
+    }
+    
+    /* Admin Login Button Styling */
+    .admin-login-btn {
+      color: #ff6b6b !important;
+      border-color: #ff6b6b !important;
+      background-color: transparent !important;
+      transition: all 0.3s ease;
+    }
+    
+    .admin-login-btn:hover {
+      color: white !important;
+      background-color: #ff6b6b !important;
+      border-color: #ff6b6b !important;
+    }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="https://www.instagram.com/mysa.in/?hl=en">
+          <img src="images/mysa-logo.jpg" alt="MYSA.IN Logo" height="50" class="d-inline-block align-text-top rounded-circle">
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            <div class="nav-item dropdown">
+              <!-- <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="productsDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Products
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+                <li><a class="dropdown-item" href="resin.html">RESIN ITEMS</a></li>
+                <li><a class="dropdown-item" href="anti-tarnish.html">18K ANTI TARNISH JEWELRY</a></li>
+                <li><a class="dropdown-item" href="bestseller.html">BEST SELLER AND GIFT BOXES</a></li>
+              </ul>
+            </div> -->
+            <a class="nav-link" href="contacts.html">Contact</a>
+          </div>
+          <div class="navbar-nav ms-auto">
+            <a class="nav-link btn btn-outline-light btn-sm admin-login-btn" href="dashboard.html">
+              <i class="fas fa-user-shield"></i> Admin Login
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    
+    
+    
+    <!-- Hero Section -->
+    <header class="text-center py-5">
+      <div class="container">
+        <h1>Timeless Jewelry & Unique Handmade Resin Art – Crafted to Captivate</h1>
+        <p class="lead">Discover premium 18k gold-plated, anti-tarnish jewelry and exquisite handmade resin gifts that tell your story. Designed to last, made to impress.</p>
+        <a href="#products" class="btn btn-primary btn-lg">Shop Now</a>
+      </div>
+      
+    </header>
+    
+    
+
+    <!-- Product Section -->
+    <section id="products" class="py-5">
+      <div class="container">
+        <h2 class="text-center mb-4" style="color: #EABAC6ff;">Our Jewelry Collection</h2>
+        <div id="productsContainer" class="row g-4">
+          <!-- Products will be loaded dynamically here -->
+          <div class="col-12 text-center">
+            <p class="text-muted">Loading products...</p>
+            </div>
+          </div>
+        </div>         
+    <!-- Image Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="imageModalLabel">Product Image</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <img id="modalImage" src="" alt="Full Product" style="max-width:100%; max-height:70vh; object-fit:contain;">
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+
+    <div class="container text-center mt-5">
+      <button class="summary-btn" onclick="goToBill()">Generate Bill</button>
+</div>  
+   
+
+<!-- Testimonials Section -->
+<div class="container mt-5">
+  <h3 class="text-center mb-4" style="color: #EABAC6ff;">What Our Customers Say</h3>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <p class="card-text">"Absolutely love the resin keychain! It's beautiful and well-made."</p>
+          <p class="text-end"><strong>- Customer A</strong></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <p class="card-text">"The resin bookmark is elegant and perfect for my books. Highly recommend!"</p>
+          <p class="text-end"><strong>- Customer B</strong></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <p class="card-text">"The resin coaster adds a stylish touch to my table. Great quality!"</p>
+          <p class="text-end"><strong>- Customer C</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add some space after testimonials -->
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-12">
+      <!-- Empty space for better visual separation -->
+    </div>
+  </div>
+</div>
+    
+    <script>
+const cart = {};
+
+// Load products from localStorage (will be replaced with n8n API)
+function loadProducts() {
+  const products = JSON.parse(localStorage.getItem('products') || '[]');
+  const container = document.getElementById('productsContainer');
+  
+  if (products.length === 0) {
+    // Show default products if no custom products are added
+    const defaultProducts = [
+      { id: 1, name: "Gold Necklace", price: 349, image: "images/img (1).jpg" },
+      { id: 2, name: "Diamond Earrings", price: 349, image: "images/img (2).jpg" },
+      { id: 3, name: "Silver Bracelet", price: 349, image: "images/img (3).jpg" },
+      { id: 4, name: "Laila Necklace", price: 349, image: "images/img (5).jpg" },
+      { id: 5, name: "Saba Necklace", price: 349, image: "images/img (6).jpg" },
+      { id: 6, name: "Inaya Necklace", price: 349, image: "images/img (7).jpg" }
+    ];
+    
+    container.innerHTML = defaultProducts.map(product => createProductCard(product)).join('');
+  } else {
+    container.innerHTML = products.map(product => createProductCard(product)).join('');
+  }
+}
+
+function createProductCard(product) {
+  return `
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="${product.image}" class="card-img-top" alt="${product.name}" style="height: 250px; object-fit: contain; cursor: pointer; background: #fff;" onclick="showFullImage('${product.image}', '${product.name}')">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">${product.name}</h5>
+          ${product.description ? `<p class="card-text">${product.description}</p>` : ''}
+          <p class="text-primary"><strong>₹${product.price}</strong></p>
+          <div class="quantity-controls mt-auto">
+            <button class="btn btn-outline-primary" onclick="updateQuantity('${product.name}', ${product.price}, -1)">-</button>
+            <span id="quantity-${product.name}" class="mx-2">0</span>
+            <button class="btn btn-outline-primary" onclick="updateQuantity('${product.name}', ${product.price}, 1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+// Show full image in modal
+function showFullImage(imageUrl, name) {
+  const modalImg = document.getElementById('modalImage');
+  const modalLabel = document.getElementById('imageModalLabel');
+  modalImg.src = imageUrl;
+  modalLabel.textContent = name || 'Product Image';
+  const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+  modal.show();
+}
+}
+
+    function updateQuantity(product, price, change) {
+      if (!cart[product]) cart[product] = { quantity: 0, price: price };
+
+      cart[product].quantity += change;
+      if (cart[product].quantity < 0) cart[product].quantity = 0;
+
+  const quantityElement = document.getElementById(`quantity-${product}`);
+  if (quantityElement) {
+    quantityElement.textContent = cart[product].quantity;
+  }
+    }
+
+    function goToBill() {
+      const cartData = JSON.stringify(cart);
+      localStorage.setItem('cart', cartData);
+      window.location.href = 'bill.html';
+    }
+
+// Load products when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  loadProducts();
+});
+
+// Listen for storage changes to update products in real-time
+window.addEventListener('storage', function(e) {
+  if (e.key === 'products') {
+    loadProducts();
+  }
+});
+
+// Also listen for custom events for same-tab updates
+window.addEventListener('productUpdated', function() {
+  loadProducts();
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  
+
+    
+   
+   
+   
+   
+   <!-- Footer -->
+    <footer class="text-center py-3">
+      <p>© 2025 MYSA.IN. All rights reserved.</p>
+      <a href="privacy-policy.html" class="me-2">Privacy Policy</a>
+      <a href="terms-condition.html">Terms of Service</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+         
+    
+
+    
+
+    
+
+    
+
+   
+    
+
+    <script>
+
+const cart = {};
+
+
+// Load products from localStorage (will be replaced with n8n API)
+function loadProducts() {
+  const products = JSON.parse(localStorage.getItem('products') || '[]');
+  const container = document.getElementById('productsContainer');
+  
+  if (products.length === 0) {
+    // Show default products if no custom products are added
+    const defaultProducts = [
+      { id: 1, name: "Gold Necklace", price: 349, image: "images/img (1).jpg" },
+      { id: 2, name: "Diamond Earrings", price: 349, image: "images/img (2).jpg" },
+      { id: 3, name: "Silver Bracelet", price: 349, image: "images/img (3).jpg" },
+      { id: 4, name: "Laila Necklace", price: 349, image: "images/img (5).jpg" },
+      { id: 5, name: "Saba Necklace", price: 349, image: "images/img (6).jpg" },
+      { id: 6, name: "Inaya Necklace", price: 349, image: "images/img (7).jpg" }
+    ];
+    
+    container.innerHTML = defaultProducts.map(product => createProductCard(product)).join('');
+  } else {
+    container.innerHTML = products.map(product => createProductCard(product)).join('');
+  }
+}
+
+function createProductCard(product) {
+  return `
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="${product.image}" class="card-img-top" alt="${product.name}" style="height: 200px; object-fit: cover;">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">${product.name}</h5>
+          ${product.description ? `<p class="card-text">${product.description}</p>` : ''}
+          <p class="text-primary"><strong>₹${product.price}</strong></p>
+          <div class="quantity-controls mt-auto">
+            <button class="btn btn-outline-primary" onclick="updateQuantity('${product.name}', ${product.price}, -1)">-</button>
+            <span id="quantity-${product.name}" class="mx-2">0</span>
+            <button class="btn btn-outline-primary" onclick="updateQuantity('${product.name}', ${product.price}, 1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+
+    function updateQuantity(product, price, change) {
+
+      if (!cart[product]) cart[product] = { quantity: 0, price: price };
+
+
+
+      cart[product].quantity += change;
+
+      if (cart[product].quantity < 0) cart[product].quantity = 0;
+
+
+
+  const quantityElement = document.getElementById(`quantity-${product}`);
+  if (quantityElement) {
+    quantityElement.textContent = cart[product].quantity;
+  }
+    }
+
+
+
+    function goToBill() {
+
+      const cartData = JSON.stringify(cart);
+
+      localStorage.setItem('cart', cartData);
+
+      window.location.href = 'bill.html';
+
+    }
+
+
+// Load products when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  loadProducts();
+});
+
+// Listen for storage changes to update products in real-time
+window.addEventListener('storage', function(e) {
+  if (e.key === 'products') {
+    loadProducts();
+  }
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+  
+
+
+
+    
+
+   
+
+   
+
+   
+
+   
+
+   
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>
+
+

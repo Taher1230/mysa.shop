@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bill Summary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script> <!-- Ensure correct version -->
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #F9F2F5;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    .bill-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #EABAC6;
+      border-radius: 10px;
+      background: white;
+      text-align: center;
+    }
+    h1 {
+      color: #EABAC6;
+    }
+    .bill-item {
+      margin: 15px 0;
+      font-size: 16px;
+    }
+    .total {
+      font-size: 20px;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+    .take-screenshot-btn, .back-btn {
+      background-color: #EABAC6;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    .take-screenshot-btn:hover, .back-btn:hover {
+      background-color: #D99CB2;
+    }
+    .disclaimer {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .contact-info {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="bill-container" id="bill-container">
+    <h1>Bill Summary</h1>
+    <div id="bill-details"></div>
+    <div class="total" id="total-amount"></div>
+    <button class="take-screenshot-btn" onclick="takeScreenshot()">Take Screenshot</button>
+  <button class="back-btn" onclick="goBackToProducts()">Back to Products</button>
+  <button class="take-screenshot-btn" id="payWithUpiBtn">Pay with UPI App</button>
+  </div>
+
+  <div class="disclaimer">
+    <p>Please take a screenshot of this bill and share it for verification on:</p>
+    <p class="contact-info">
+      WhatsApp: <strong>+91 9978849483</strong><br>
+      Instagram: <strong><a href="https://www.instagram.com/mysa.in/?hl=en">mysa.in</a></strong>
+    </p>
+    <p>Thank you for your purchase!</p>
+  </div>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem('cart')) || {};
+    const billDetailsDiv = document.getElementById('bill-details');
+    const totalAmountDiv = document.getElementById('total-amount');
+    let totalAmount = 0;
+
+    // Displaying cart items
+    for (const product in cart) {
+      if (cart[product].quantity > 0) {
+        const itemTotal = cart[product].quantity * cart[product].price;
+        totalAmount += itemTotal;
+
+        const billItem = document.createElement('div');
+        billItem.className = 'bill-item';
+        billItem.innerHTML = `${product} (₹${cart[product].price}) x ${cart[product].quantity} = ₹${itemTotal}`;
+        billDetailsDiv.appendChild(billItem);
+      }
+    }
+
+    totalAmountDiv.textContent = `Total Amount: ₹${totalAmount}`;
+
+    // UPI Payment Button
+    document.getElementById('payWithUpiBtn').addEventListener('click', function() {
+      // Replace with your UPI ID and name
+      const upiId = 'mysa.by.nafisa@okicici'; // Example UPI ID
+      const name = 'MYSA.IN';
+      const amount = totalAmount;
+      const txnNote = 'Payment for MYSA.IN order';
+      // UPI deep link
+      const upiUrl = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(name)}&am=${encodeURIComponent(amount)}&cu=INR&tn=${encodeURIComponent(txnNote)}`;
+      window.location.href = upiUrl;
+    });
+
+    // Function to take screenshot of the bill container
+    function takeScreenshot() {
+      html2canvas(document.getElementById("bill-container"), {
+        onrendered: function(canvas) {  // Callback function for capturing the screenshot
+          const screenshotDataUrl = canvas.toDataURL();
+          const link = document.createElement('a');
+          link.href = screenshotDataUrl;
+          link.download = 'bill_screenshot.png'; // The name of the screenshot file
+          link.click();
+        }
+      });
+    }
+
+    // Function to go back to the products page
+    function goBackToProducts() {
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
